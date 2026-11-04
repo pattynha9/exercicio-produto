@@ -1,0 +1,112 @@
+programa
+{
+
+    funcao inteiro exibirMenu()
+    {
+        inteiro opcao
+
+        escreva("1 - Adicionar produtos ao estoque\n")
+        escreva("2 - Remover produtos do estoque\n")
+        escreva("3 - Consultar estoque\n")
+        escreva("4 - Sair do programa\n")
+        escreva("Escolha uma opcao: ")
+        leia(opcao)
+
+        enquanto(opcao < 1 ou opcao > 4)
+        {
+            escreva("\nOpcao invalida! Tente novamente.\n")
+            escreva("1 - Adicionar produtos ao estoque\n")
+            escreva("2 - Remover produtos do estoque\n")
+            escreva("3 - Consultar estoque\n")
+            escreva("4 - Sair do programa\n")
+            escreva("Escolha uma opcao: ")
+            leia(opcao)
+        }
+
+        retorne opcao
+    }
+
+    funcao inteiro adicionarProduto(inteiro estoque)
+    {
+        inteiro quantidade
+
+        escreva("\nQuantos produtos deseja adicionar? ")
+        leia(quantidade)
+
+        se(quantidade > 0)
+        {
+            estoque = estoque + quantidade
+            escreva("\nProdutos adicionados com sucesso!\n")
+        }
+        senao
+        {
+            escreva("\nQuantidade invalida!\n")
+        }
+
+        retorne estoque
+    }
+
+    funcao inteiro removerProduto(inteiro estoque)
+    {
+        inteiro quantidade
+
+        escreva("\nQuantos produtos deseja remover? ")
+        leia(quantidade)
+
+        se(quantidade > 0 e quantidade <= estoque)
+        {
+            estoque = estoque - quantidade
+            escreva("\nProdutos removidos com sucesso!\n")
+        }
+        senao
+        {
+            escreva("\nQuantidade invalida ou estoque insuficiente!\n")
+        }
+
+        retorne estoque
+    }
+
+    funcao vazio consultarEstoque(cadeia produto, inteiro estoque)
+    {
+        escreva("\n===== DADOS DO ESTOQUE =====\n")
+        escreva("Produto: ", produto, "\n")
+        escreva("Quantidade disponivel: ", estoque, " unidades\n")
+    }
+
+    funcao inicio()
+    {
+    cadeia produto
+    inteiro estoque = 0
+    inteiro opcao = 0
+
+        escreva("Digite o nome do produto: ")
+        leia(produto)
+
+        enquanto(opcao != 4)
+        {
+            opcao = exibirMenu()
+
+            escolha(opcao)
+            {
+                caso 1:
+                    estoque = adicionarProduto(estoque)
+                    pare
+
+                caso 2:
+                    estoque = removerProduto(estoque)
+                    pare
+
+                caso 3:
+                    consultarEstoque(produto, estoque)
+                    pare
+
+                caso 4:
+                    escreva("\nEncerrando o programa...\n")
+                    escreva("Produto: ", produto, "\n")
+                    escreva("Estoque final: ", estoque, " unidades\n")
+                    escreva("Ate logo!\n")
+                    pare
+            }
+        }
+    }
+}
